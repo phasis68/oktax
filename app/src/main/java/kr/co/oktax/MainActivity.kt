@@ -1,45 +1,24 @@
 package kr.co.oktax
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.res.Configuration
 import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebSettingsCompat.DARK_STRATEGY_PREFER_WEB_THEME_OVER_USER_AGENT_DARKENING
-import androidx.webkit.WebViewAssetLoader
-import androidx.webkit.WebViewClientCompat
 import androidx.webkit.WebViewFeature
 import kr.co.oktax.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     // Creating the custom WebView Client Class
-    private class MyWebViewClient(private val assetLoader: WebViewAssetLoader) :
-        WebViewClientCompat() {
-        override fun shouldInterceptRequest(
-            view: WebView,
-            request: WebResourceRequest
-        ): WebResourceResponse? {
-            return assetLoader.shouldInterceptRequest(request.url)
-        }
-    }
 
     // Invokes native android sharing
     private fun invokeShareIntent(message: String) {
@@ -112,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         // Enable Javascript
         binding.webview.settings.javaScriptEnabled = true
-        binding.webview.settings.domStorageEnabled = true;
+        binding.webview.settings.domStorageEnabled = true
 
         // Create a JS object to be injected into frames; Determines if WebMessageListener
         // or WebAppInterface should be used
